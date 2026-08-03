@@ -39,7 +39,7 @@ export function ProjectCard({ project, index, language }: ProjectCardProps) {
           </span>
           <span
             className={cn(
-              "inline-flex items-center gap-2 rounded-full border-2 border-dashed px-3 py-1 font-medium tracking-wide",
+              "inline-flex items-center gap-2 rounded-full border-2 px-3 py-1 font-medium tracking-wide",
               statusStyles[project.status]
             )}
           >
@@ -52,7 +52,7 @@ export function ProjectCard({ project, index, language }: ProjectCardProps) {
 
       <div className="flex flex-col gap-5">
         {project.featured && (
-          <span className="font-tag w-fit -rotate-3 bg-primary px-3 py-1 text-sm text-primary-foreground">
+          <span className="font-tag w-fit bg-primary px-3 py-1 text-sm text-primary-foreground">
             {ui.labels.featured[language]}
           </span>
         )}

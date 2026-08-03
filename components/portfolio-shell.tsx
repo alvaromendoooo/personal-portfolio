@@ -30,24 +30,10 @@ export function PortfolioShell() {
       {/* Grano de pared / cinta sobre toda la pagina */}
       <div className="grain-overlay" />
 
-      {/* Mural y capas urbanas decorativas */}
+      {/* Capas urbanas decorativas, reducidas al minimo tras retirar el mural */}
       <div aria-hidden="true" className="urban-backdrop pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div className="urban-mural" />
-        <div className="urban-halftone urban-halftone--left" />
-        <div className="urban-halftone urban-halftone--right" />
         <div className="urban-side-tag urban-side-tag--left">FLOW / CODE</div>
         <div className="urban-side-tag urban-side-tag--right">BUILD / REPEAT</div>
-        <div className="urban-record">
-          <span className="urban-record__label" />
-        </div>
-        <div className="urban-equalizer">
-          <i />
-          <i />
-          <i />
-          <i />
-          <i />
-          <i />
-        </div>
       </div>
 
       {/* -------------------------------------------------------------- Header */}
@@ -144,7 +130,7 @@ export function PortfolioShell() {
             <div className="flex flex-wrap items-center gap-4">
               <a
                 href="#projects"
-                className="inline-flex min-h-12 items-center gap-2 bg-primary px-6 font-mono text-xs font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:-translate-y-0.5 hover:-rotate-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                className="inline-flex min-h-12 items-center gap-2 bg-primary px-6 font-mono text-xs font-bold uppercase tracking-widest text-primary-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
               >
                 {ui.labels.viewProjects[language]}
                 <ArrowUpRightIcon aria-hidden="true" />
@@ -222,7 +208,7 @@ export function PortfolioShell() {
                   {group.items.map((item) => (
                     <li
                       key={item}
-                      className="stencil-border bg-background/40 px-3 py-2 font-sans text-sm font-medium transition-transform duration-200 hover:-translate-y-0.5 hover:rotate-1 hover:bg-accent hover:text-accent-foreground"
+                      className="stencil-border bg-background/40 px-3 py-2 font-sans text-sm font-medium transition-transform duration-200 hover:-translate-y-0.5 hover:bg-accent hover:text-accent-foreground"
                     >
                       {item}
                     </li>
@@ -364,20 +350,20 @@ function TagBadge({
   )
 }
 
-/** Trazo de spray dibujado a mano, reutilizado como subrayado */
+/** Trazo dibujado a mano, fino y controlado, reutilizado como subrayado */
 function SprayStroke({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 200 20"
+      viewBox="0 0 200 14"
       preserveAspectRatio="none"
       aria-hidden="true"
       className={className}
     >
       <path
-        d="M2 12 C 30 4, 55 18, 85 9 S 140 3, 170 12 S 195 15 198 10"
+        d="M2 8 C 30 4, 55 11, 85 7 S 140 4, 170 8 S 195 9 198 7"
         fill="none"
         stroke="currentColor"
-        strokeWidth="7"
+        strokeWidth="3"
         strokeLinecap="round"
       />
     </svg>
