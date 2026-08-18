@@ -5,8 +5,7 @@
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-bungee);
-  --font-tag: var(--font-marker);
+  --font-display: var(--font-space-grotesk);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -32,43 +31,44 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
 
-  --radius-sm: 0;
-  --radius-md: 0.125rem;
-  --radius-lg: 0.25rem;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.375rem;
   --radius-xl: 0.5rem;
 }
 
 /*
- * Sistema urbano de cinco colores, ajustado para cumplir WCAG AA (min. 4.5:1 en texto,
- * ~3:1 en bordes de componentes) frente al fondo #f2eee4:
- * hormigón marfil #f2eee4 · tinta #211d1b · coral #b93e24 (4.8:1) · teal #23726c (4.9:1) ·
- * mostaza #7c6018 (5.1:1). El mural concentra color en los bordes y conserva el centro legible.
+ * Paleta "panel de sistemas": grafito frío sobre papel, con un verde de estado
+ * como único acento saturado. Pensada para transmitir precisión y fiabilidad
+ * a clientes que evalúan a un ingeniero de backend/infraestructura.
+ * Contraste comprobado contra WCAG AA (>= 4.5:1 en texto).
+ * papel #F4F5F2 · tinta #14181C · señal #1C6E5C · bronce #8A5A2B · alerta #A3372B
  */
 :root {
   color-scheme: light;
-  --background: #f2eee4;
-  --foreground: #211d1b;
-  --card: #f2eee4;
-  --card-foreground: #211d1b;
-  --popover: #f2eee4;
-  --popover-foreground: #211d1b;
-  --primary: #b93e24;
-  --primary-foreground: #f2eee4;
-  --secondary: #7c6018;
-  --secondary-foreground: #211d1b;
-  --muted: color-mix(in srgb, #211d1b 6%, #f2eee4);
-  --muted-foreground: color-mix(in srgb, #211d1b 65%, #f2eee4);
-  --accent: #23726c;
-  --accent-foreground: #f2eee4;
-  --destructive: #b93e24;
-  --border: color-mix(in srgb, #211d1b 46%, #f2eee4);
-  --input: color-mix(in srgb, #211d1b 46%, #f2eee4);
-  --ring: #23726c;
-  --chart-1: #b93e24;
-  --chart-2: #23726c;
-  --chart-3: #7c6018;
-  --chart-4: #211d1b;
-  --chart-5: #f2eee4;
+  --background: #f4f5f2;
+  --foreground: #14181c;
+  --card: #ffffff;
+  --card-foreground: #14181c;
+  --popover: #ffffff;
+  --popover-foreground: #14181c;
+  --primary: #1c6e5c;
+  --primary-foreground: #f4f5f2;
+  --secondary: #8a5a2b;
+  --secondary-foreground: #f4f5f2;
+  --muted: color-mix(in srgb, #14181c 5%, #f4f5f2);
+  --muted-foreground: color-mix(in srgb, #14181c 60%, #f4f5f2);
+  --accent: #1c6e5c;
+  --accent-foreground: #f4f5f2;
+  --destructive: #a3372b;
+  --border: color-mix(in srgb, #14181c 14%, #f4f5f2);
+  --input: color-mix(in srgb, #14181c 22%, #f4f5f2);
+  --ring: #1c6e5c;
+  --chart-1: #1c6e5c;
+  --chart-2: #8a5a2b;
+  --chart-3: #a3372b;
+  --chart-4: #14181c;
+  --chart-5: #f4f5f2;
 }
 
 @layer base {
@@ -91,55 +91,14 @@
 }
 
 /* -------------------------------------------------------------- Superficie */
-.wall-bg {
+/* Retícula fina tipo plano técnico / blueprint, muy sutil */
+.grid-surface {
   background-color: var(--background);
   background-image:
-    linear-gradient(90deg, color-mix(in srgb, var(--foreground) 3%, transparent) 1px, transparent 1px),
-    linear-gradient(color-mix(in srgb, var(--foreground) 3%, transparent) 1px, transparent 1px),
-    radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--foreground) 4%, transparent), transparent 28%);
-  background-size: 96px 54px, 96px 54px, auto;
-}
-
-.grain-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0.045;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-.urban-backdrop {
-  opacity: 1;
-}
-
-.urban-side-tag {
-  position: absolute;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.34em;
-  color: var(--foreground);
-  opacity: 0.22;
-  writing-mode: vertical-rl;
-}
-
-.urban-side-tag--left {
-  top: 24rem;
-  left: 1.35rem;
-  transform: rotate(180deg);
-}
-
-.urban-side-tag--right {
-  top: 82rem;
-  right: 1.35rem;
-}
-
-@media (max-width: 767px) {
-  .urban-side-tag {
-    display: none;
-  }
+    linear-gradient(90deg, color-mix(in srgb, var(--foreground) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(color-mix(in srgb, var(--foreground) 5%, transparent) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: -1px -1px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -157,61 +116,85 @@
   }
 }
 
-/* ------------------------------------------------------------- Firma / tag */
-/* Insignia con las iniciales, usada como firma/logo: estable, sin balanceo aleatorio */
-.tag-badge {
+/* ------------------------------------------------------------- Indicadores */
+/* Punto de estado tipo panel de monitorización, con pulso sutil */
+.status-dot {
+  position: relative;
+  display: inline-flex;
+  size: 0.5rem;
+}
+
+.status-dot::before {
+  content: "";
+  position: absolute;
+  inset: -0.3rem;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.18;
+  animation: status-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  0%, 100% {
+    transform: scale(0.85);
+    opacity: 0.18;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.04;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-dot::before {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------- Firma / mark */
+/* Monograma cuadrado, estable, sin adornos: firma/logo profesional */
+.mark-badge {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-tag);
+  font-family: var(--font-mono);
+  font-weight: 700;
   border: 1.5px solid var(--foreground);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  background: var(--card);
 }
 
-/* Trazo dibujado a mano, fino, usado como subrayado */
-.spray-underline {
+/* Panel con esquinas de anotación técnica, tipo visor/instrumento */
+.corner-frame {
   position: relative;
-  display: inline-block;
 }
 
-.spray-underline svg {
+.corner-frame::before,
+.corner-frame::after {
+  content: "";
   position: absolute;
-  left: -1%;
-  bottom: -0.24em;
-  width: 102%;
-  height: 0.32em;
-  overflow: visible;
+  width: 1rem;
+  height: 1rem;
+  border-color: var(--primary);
 }
 
-/* Tarjetas / paneles con un filo fino y limpio */
-.stencil-border {
+.corner-frame::before {
+  top: -0.5rem;
+  left: -0.5rem;
+  border-width: 2px 0 0 2px;
+}
+
+.corner-frame::after {
+  bottom: -0.5rem;
+  right: -0.5rem;
+  border-width: 0 2px 2px 0;
+}
+
+/* Tarjetas / paneles con filo fino y limpio */
+.panel-border {
   border: 1px solid var(--border);
 }
 
-/* marco de retrato, preciso, sin cinta ni inclinacion */
-.tape-frame {
-  position: relative;
-}
-
-.tape-frame::before,
-.tape-frame::after {
-  content: "";
-  position: absolute;
-  width: 1.1rem;
-  height: 1.1rem;
-  border: 1.5px solid var(--primary);
-}
-
-.tape-frame::before {
-  top: -0.45rem;
-  left: -0.45rem;
-  border-width: 1.5px 0 0 1.5px;
-}
-
-.tape-frame::after {
-  bottom: -0.45rem;
-  right: -0.45rem;
-  border-width: 0 1.5px 1.5px 0;
+.panel-border-strong {
+  border: 1.5px solid var(--foreground);
 }

@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
-import { Bungee, Geist, Geist_Mono, Permanent_Marker } from "next/font/google"
+import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google"
 import "./globals.css"
 
 const geistSans = Geist({
@@ -13,35 +13,36 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
 })
 
-/** Display "stencil" para titulares grandes, estilo rotulacion urbana */
-const bungee = Bungee({
+/** Display geométrico y técnico para titulares, usado con moderación */
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-bungee",
-})
-
-/** Trazo manuscrito para la firma/tag, usar con moderacion */
-const permanentMarker = Permanent_Marker({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-marker",
+  weight: ["500", "700"],
+  variable: "--font-space-grotesk",
 })
 
 export const metadata: Metadata = {
-  title: "Álex Moreno — Software Engineer",
+  title: "Álvaro Mendo Martín — Ingeniero de Software Backend & Infraestructura",
   description:
-    "Portfolio bilingüe de Álex Moreno, ingeniero de software especializado en productos web full-stack.",
+    "Portfolio de Álvaro Mendo Martín, ingeniero de software freelance especializado en backend, automatización de procesos e infraestructura para software empresarial.",
   generator: "v0.app",
-  keywords: ["software engineer", "ingeniero de software", "full-stack", "portfolio", "developer"],
+  keywords: [
+    "software engineer",
+    "ingeniero de software",
+    "backend developer",
+    "freelance developer",
+    "infraestructura cloud",
+    "automatización",
+    "portfolio",
+  ],
   icons: {
-    icon: "/icon.svg",
-    apple: "/apple-icon.png",
+    icon: "/icon-web.png",
+    apple: "/icon-web.png",
   },
 }
 
 export const viewport: Viewport = {
   colorScheme: "light",
-  themeColor: "#f2eee4",
+  themeColor: "#f4f5f2",
   width: "device-width",
   initialScale: 1,
 }
@@ -50,7 +51,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="es" className="bg-background scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${bungee.variable} ${permanentMarker.variable} font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} font-sans antialiased`}
       >
         {children}
         {process.env.NODE_ENV === "production" && <Analytics />}
