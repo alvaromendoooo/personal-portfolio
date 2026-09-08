@@ -67,6 +67,15 @@ export type Service = {
   tech: string[]
 }
 
+export type Writing = {
+  slug: string
+  date: string
+  readingTime: string
+  title: Localized
+  excerpt: Localized
+  tags: string[]
+}
+
 // -----------------------------------------------------------------------------
 // PERFIL PERSONAL  ·  PERSONAL PROFILE
 // -----------------------------------------------------------------------------
@@ -78,18 +87,18 @@ export const profile = {
   githubHandle: "alvaromendoooo",
   /** Rol / Role */
   role: {
-    es: "Ingeniero de Software · Backend & Infraestructura",
-    en: "Software Engineer · Backend & Infrastructure",
+    es: "Ingeniero de software backend",
+    en: "Backend software engineer",
   } satisfies Localized,
   /** Titular grande del hero / Big hero headline */
   headline: {
-    es: "Construyo el software que hace funcionar tu negocio",
-    en: "I build the software that keeps your business running",
+    es: "Me interesa lo que pasa detrás del producto",
+    en: "I care about what happens behind the product",
   } satisfies Localized,
   /** Presentación breve / Short intro */
   intro: {
-    es: "Diseño y desarrollo backends, automatizaciones e infraestructura fiables para empresas que necesitan sistemas que funcionen sin sorpresas. Full-stack cuando el proyecto lo pide, siempre con código limpio, documentado y listo para escalar.",
-    en: "I design and build reliable backends, automations and infrastructure for businesses that need systems that just work. Full-stack when the project calls for it, always with clean, documented, scalable code.",
+    es: "Soy un ingeniero de software junior centrado en APIs, automatización e infraestructura. Me gusta entender los sistemas a fondo y construirlos para que sean fáciles de mantener, desplegar y mejorar.",
+    en: "I’m a junior software engineer focused on APIs, automation and infrastructure. I like understanding systems deeply and building them to be easy to maintain, deploy and improve.",
   } satisfies Localized,
   /** Biografía más larga para la sección Sobre mí / Longer bio for the About section */
   bio: {
@@ -121,10 +130,50 @@ export const profile = {
 // -----------------------------------------------------------------------------
 
 export const stats: { value: string; label: Localized }[] = [
-  { value: "4", label: { es: "Áreas de especialización", en: "Specialization areas" } },
-  { value: "10+", label: { es: "Tecnologías en producción", en: "Technologies shipped" } },
-  { value: "100%", label: { es: "Trabajo remoto", en: "Remote-ready" } },
-  { value: "0+", label: { es: "Años de experiencia laboral", en: "Years of working experience" }},
+  { value: "03", label: { es: "Proyectos destacados", en: "Selected projects" } },
+  { value: "API", label: { es: "Backend first", en: "Backend first" } },
+  { value: "ES", label: { es: "Basado en España", en: "Based in Spain" } },
+]
+
+export const currentFocus: Localized = {
+  es: "Ahora estoy profundizando en observabilidad, diseño de sistemas y las decisiones que hacen que un backend sea más sencillo de operar.",
+  en: "Right now I’m going deeper into observability, system design and the decisions that make a backend simpler to operate.",
+}
+
+export const writing: Writing[] = [
+  {
+    slug: "building-beyond-the-happy-path",
+    date: "2026-09",
+    readingTime: "4 min",
+    title: { es: "Construir más allá del happy path", en: "Building beyond the happy path" },
+    excerpt: {
+      es: "Las preguntas que intento hacerme antes de llamar terminado a un backend.",
+      en: "The questions I try to ask before calling a backend finished.",
+    },
+    tags: ["backend", "reliability"],
+  },
+  {
+    slug: "what-i-learned-from-agropredict",
+    date: "2026-08",
+    readingTime: "6 min",
+    title: { es: "Lo que aprendí construyendo AgroPredict", en: "What I learned building AgroPredict" },
+    excerpt: {
+      es: "Procesamiento de datos, tareas en segundo plano y la importancia de observar lo que ocurre.",
+      en: "Data processing, background jobs and the importance of observing what happens.",
+    },
+    tags: ["projects", "systems"],
+  },
+  {
+    slug: "notes-on-learning-in-public",
+    date: "2026-07",
+    readingTime: "3 min",
+    title: { es: "Aprender en público sin tener todas las respuestas", en: "Learning in public without all the answers" },
+    excerpt: {
+      es: "Por qué documentar el proceso también forma parte de convertirse en ingeniero.",
+      en: "Why documenting the process is also part of becoming an engineer.",
+    },
+    tags: ["learning", "career"],
+  },
 ]
 
 // -----------------------------------------------------------------------------
@@ -259,8 +308,8 @@ export const projects: Project[] = [
       es: "Infraestructura servidora completa para la aplicación Paw Meet: API, tareas en segundo plano y envío de notificaciones, contenerizada y lista para desplegar.",
       en: "Full server infrastructure for the Paw Meet app: API, background jobs and notification delivery, containerized and deploy-ready.",
     },
-    tech: ["Python", "Django", "Docker", "Celery", "Resend"],
-    repo: "https://github.com/alvaromendoooo/paw-meet-backend",
+    tech: ["Python", "Django", "Docker", "Celery", "Resend", "Svelte-kit"],
+    repo: "https://github.com/alvaromendoooo/agropredict",
   },
   {
     id: "tree-detector",
@@ -294,15 +343,16 @@ export const projects: Project[] = [
 
 export const ui = {
   nav: {
-    services: { es: "Especialización", en: "Specialization" },
+    services: { es: "Enfoque", en: "Focus" },
     about: { es: "Sobre mí", en: "About" },
     skills: { es: "Stack", en: "Stack" },
     projects: { es: "Proyectos", en: "Projects" },
+    writing: { es: "Pensamientos", en: "Thoughts" },
     contact: { es: "Contacto", en: "Contact" },
   },
   sections: {
     servicesKicker: { es: "En qué te puedo ayudar", en: "How I can help" },
-    servicesTitle: { es: "Especialización", en: "Specialization" },
+    servicesTitle: { es: "El tipo de problemas que me gusta resolver", en: "The kind of problems I like solving" },
     servicesSubtitle: {
       es: "Cuatro áreas donde puedo asumir tu proyecto de principio a fin, o encajar dentro de un equipo ya existente.",
       en: "Four areas where I can own your project end to end, or fit into an existing team.",
@@ -314,7 +364,7 @@ export const ui = {
     skillsKicker: { es: "Stack técnico", en: "Technical stack" },
     skillsTitle: { es: "Con lo que trabajo", en: "What I work with" },
     projectsKicker: { es: "Proyectos", en: "Projects" },
-    projectsTitle: { es: "Trabajo realizado", en: "Work delivered" },
+    projectsTitle: { es: "Trabajo seleccionado", en: "Selected work" },
     projectsSubtitle: {
       es: "Una selección de proyectos actuales, con foco en backend, automatización e infraestructura.",
       en: "A selection of current projects, with a focus on backend, automation and infrastructure.",
@@ -337,6 +387,8 @@ export const ui = {
     featured: { es: "Destacado", en: "Featured" },
     emailMe: { es: "Enviar correo", en: "Email me" },
     backToTop: { es: "Volver arriba", en: "Back to top" },
+    readArticle: { es: "Leer nota", en: "Read note" },
+    viewAllWriting: { es: "Ver todas las notas", en: "View all writing" },
   },
   status: {
     live: { es: "En producción", en: "Live" },
